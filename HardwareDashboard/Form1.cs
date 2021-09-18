@@ -37,6 +37,8 @@ namespace HardwareDashboard
         {
             InitializeComponent();
             modernSlider1.ValueChanged += ModernSlider1_ValueChanged;
+            comp.Open();
+            UpdateHardware();
         }
 
         private void ModernSlider1_ValueChanged(object sender, EventArgs e)
@@ -118,8 +120,6 @@ namespace HardwareDashboard
 
         private void testIcon_Click(object sender, EventArgs e)
         {
-            comp.Open();
-            UpdateHardware();
         }
 
         private void topPanel_MouseMove(object sender, MouseEventArgs e)
