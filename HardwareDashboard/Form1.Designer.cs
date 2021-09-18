@@ -55,6 +55,7 @@
             this.gpuLbl = new System.Windows.Forms.Label();
             this.gpuLoadGauge = new CircleLoadingBar.Gauge();
             this.roundedPanel2 = new CircleLoadingBar.RoundedPanel();
+            this.lineGraph = new HardwareDashboard.MultilevelLineGraph();
             this.sliderValue = new System.Windows.Forms.Label();
             this.modernCheckBox3 = new HardwareDashboard.ModernCheckBox();
             this.modernCheckBox2 = new HardwareDashboard.ModernCheckBox();
@@ -67,7 +68,6 @@
             this.cpuLoadCheck = new HardwareDashboard.ModernCheckBox();
             this.cpuLoadGauge = new CircleLoadingBar.Gauge();
             this.cpuLbl = new System.Windows.Forms.Label();
-            this.lineGraph = new HardwareDashboard.MultilevelLineGraph();
             this.topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -445,7 +445,7 @@
             this.gpuLoadGauge.Location = new System.Drawing.Point(44, 108);
             this.gpuLoadGauge.Margin = new System.Windows.Forms.Padding(21);
             this.gpuLoadGauge.MarkLineWidth = 1;
-            this.gpuLoadGauge.MaxValue = 300D;
+            this.gpuLoadGauge.MaxValue = 100D;
             this.gpuLoadGauge.Name = "gpuLoadGauge";
             this.gpuLoadGauge.PercentageMarkColor = System.Drawing.Color.Gainsboro;
             this.gpuLoadGauge.PointerBase = 6;
@@ -455,7 +455,7 @@
             this.gpuLoadGauge.SweepAngle = 90F;
             this.gpuLoadGauge.TabIndex = 2;
             this.gpuLoadGauge.TextHeightPercentage = 0.7F;
-            this.gpuLoadGauge.Value = 145D;
+            this.gpuLoadGauge.Value = 50D;
             // 
             // roundedPanel2
             // 
@@ -489,6 +489,25 @@
             this.roundedPanel2.Name = "roundedPanel2";
             this.roundedPanel2.Size = new System.Drawing.Size(539, 236);
             this.roundedPanel2.TabIndex = 1;
+            // 
+            // lineGraph
+            // 
+            this.lineGraph.Captions = ((System.Collections.Generic.List<string>)(resources.GetObject("lineGraph.Captions")));
+            this.lineGraph.DisplayDots = true;
+            this.lineGraph.DisplayLegend = true;
+            this.lineGraph.DisplayText = true;
+            this.lineGraph.FillBackground = true;
+            this.lineGraph.GraphLines = System.Drawing.Color.Gray;
+            this.lineGraph.GraphOutline = System.Drawing.Color.Black;
+            this.lineGraph.Location = new System.Drawing.Point(6, 44);
+            this.lineGraph.MaxDisplay = 50;
+            this.lineGraph.Name = "lineGraph";
+            this.lineGraph.OutlineBottom = true;
+            this.lineGraph.OutlineLeft = true;
+            this.lineGraph.PercentageLines = true;
+            this.lineGraph.Size = new System.Drawing.Size(502, 150);
+            this.lineGraph.TabIndex = 0;
+            this.lineGraph.Values = ((System.Collections.Generic.List<System.Collections.Generic.List<float>>)(resources.GetObject("lineGraph.Values")));
             // 
             // sliderValue
             // 
@@ -704,25 +723,6 @@
             this.cpuLbl.TabIndex = 1;
             this.cpuLbl.Text = "CPU Load";
             this.cpuLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lineGraph
-            // 
-            this.lineGraph.Captions = ((System.Collections.Generic.List<string>)(resources.GetObject("lineGraph.Captions")));
-            this.lineGraph.DisplayDots = true;
-            this.lineGraph.DisplayLegend = true;
-            this.lineGraph.DisplayText = true;
-            this.lineGraph.FillBackground = true;
-            this.lineGraph.GraphLines = System.Drawing.Color.Gray;
-            this.lineGraph.GraphOutline = System.Drawing.Color.Black;
-            this.lineGraph.Location = new System.Drawing.Point(6, 44);
-            this.lineGraph.MaxDisplay = 50;
-            this.lineGraph.Name = "lineGraph";
-            this.lineGraph.OutlineBottom = true;
-            this.lineGraph.OutlineLeft = true;
-            this.lineGraph.PercentageLines = true;
-            this.lineGraph.Size = new System.Drawing.Size(502, 150);
-            this.lineGraph.TabIndex = 0;
-            this.lineGraph.Values = ((System.Collections.Generic.List<System.Collections.Generic.List<float>>)(resources.GetObject("lineGraph.Values")));
             // 
             // Form1
             // 

@@ -23,7 +23,6 @@ namespace HardwareDashboard
         Random rnd = new Random();
         bool created = false;
         List<VerticalProgressBar> bars = new List<VerticalProgressBar>();
-        List<Label> labels = new List<Label>();
         List<List<float>> values = new List<List<float>>();
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -56,19 +55,15 @@ namespace HardwareDashboard
             {
                 if (!created)
                 {
-                    Point barLocation = new Point(maxWidth / 8 * i + (int)(maxWidth - (maxWidth / 8 * cpu.loadCores.Count * 1.5) + maxWidth / 32), 40);
+                    Point barLocation = new Point(maxWidth / cpu.loadCores.Count * bars.Count + 5, 40);
                     VerticalProgressBar bar = new VerticalProgressBar();
                     bar.Value = load.Value;
-                    bar.Width = maxWidth / 16;
+                    bar.Width = (int)(maxWidth / cpu.loadCores.Count * .75);
                     bar.Height = (int)(cpuCorePanel.Height * 0.70);
                     bar.Location = barLocation;
                     bar.EdgeColor = Color.DimGray;
-                    Label lbl = new Label();
-                    lbl.Location = new Point((int)(maxWidth * 0.8), 25 * i++ + 40); //new Point(barLocation.X - 10, (int)(cpuCorePanel.Height * 0.70 + 45));
-                    lbl.Text = i + ": " + load.Value.ToString("0.0") + "%";
-                    lbl.ForeColor = Color.WhiteSmoke;
+                    lineGraph.Captions.Add("Core #" + i++);
                     bars.Add(bar);
-                    labels.Add(lbl);
                     values.Add(new List<float>());
                     cpuLbl.Text = "CPU Load | " + cpu.Name;
                     gpuLbl.Text = "GPU Load | " + gpu.Name;
@@ -76,7 +71,6 @@ namespace HardwareDashboard
                 else
                 {
                     bars[i].Value = load.Value;
-                    labels[i].Text = i + ": " + load.Value.ToString("0.0") + "%";
                     values[i].Add(load.Value);
                     if (load.Value <= 33)
                         bars[i].BarColor = new Color[] { Color.FromArgb(124, 187, 0), Color.FromArgb(111, 168, 0) };
@@ -87,25 +81,22 @@ namespace HardwareDashboard
                     i++;
                 }
             }
+            if (!created)
+                foreach (var progressbar in bars)
+                    cpuCorePanel.ContentsPanel.Controls.Add(progressbar);
+
             if (cpu.loadTotal != null && cpuLoadCheck.Checked)
                 cpuLoadGauge.Value = cpu.loadTotal.Value;
             if (gpu.Load != null && gpuLoadCheck.Checked)
-                gpuLoadGauge.Value = rnd.Next(0, 300);
+                gpuLoadGauge.Value = (double)gpu.Load;
 
             PerfomanceInfoData data = await GetMemory();
             memoryLoad.Value = (double)data.PhysicalAvailableBytes / (double)data.PhysicalTotalBytes * 100.0;
             hddBar.Value = 100 - (double)DriveInfo.GetDrives()[0].TotalFreeSpace / (double)DriveInfo.GetDrives()[0].TotalSize * 100.0;
 
 
-            foreach (var progressbar in bars)
-                cpuCorePanel.ContentsPanel.Controls.Add(progressbar);
             i = 1;
-            foreach (var lbl in labels)
-            {
-                cpuCorePanel.ContentsPanel.Controls.Add(lbl);
-                lineGraph.Captions.Add("Core #" + i++);
-            }
-            if (bars.Count > 0 && labels.Count > 0)
+            if (bars.Count > 0)
                 created = true;
             lineGraph.Values = values;
             if (sw.ElapsedMilliseconds < 1000)
