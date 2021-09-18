@@ -104,7 +104,7 @@
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.topPanel.Location = new System.Drawing.Point(0, 0);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(883, 30);
+            this.topPanel.Size = new System.Drawing.Size(883, 31);
             this.topPanel.TabIndex = 6;
             this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
             // 
@@ -167,9 +167,9 @@
             this.sidePanel.Controls.Add(this.settingsPanel);
             this.sidePanel.Controls.Add(this.testPanel);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidePanel.Location = new System.Drawing.Point(0, 30);
+            this.sidePanel.Location = new System.Drawing.Point(0, 31);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(48, 605);
+            this.sidePanel.Size = new System.Drawing.Size(48, 604);
             this.sidePanel.TabIndex = 7;
             // 
             // tempPanel
@@ -500,7 +500,7 @@
             this.lineGraph.GraphLines = System.Drawing.Color.Gray;
             this.lineGraph.GraphOutline = System.Drawing.Color.Black;
             this.lineGraph.Location = new System.Drawing.Point(6, 44);
-            this.lineGraph.MaxDisplay = 50;
+            this.lineGraph.MaxDisplay = 25;
             this.lineGraph.Name = "lineGraph";
             this.lineGraph.OutlineBottom = true;
             this.lineGraph.OutlineLeft = true;
@@ -791,7 +791,6 @@
         private CircleLoadingBar.Gauge cpuLoadGauge;
         private System.Windows.Forms.Panel topPanel;
         private System.Windows.Forms.Panel sidePanel;
-        private System.Windows.Forms.PictureBox MainIcon;
         private System.Windows.Forms.Panel testPanel;
         private System.Windows.Forms.PictureBox testIcon;
         private System.Windows.Forms.Panel settingsPanel;
@@ -813,6 +812,7 @@
         private ModernSlider modernSlider1;
         private System.Windows.Forms.Label sliderValue;
         private MultilevelLineGraph lineGraph;
+        private System.Windows.Forms.PictureBox MainIcon;
     }
 }
 
